@@ -1,4 +1,4 @@
-# README
+# Thermostat App GUI
 
 This project is developed and used as part of a Software Modeling course
 by the Software Engineering Lab of University of Mons, Belgium.
@@ -7,8 +7,6 @@ It provides an example of a statechart-based Thermostat controller in Java.
 The statechart was created with Yakindu Statechart Tools
 and Java code was generated from the statechart.
 A Swing GUI executes the behaviour of this generated statechart code.
-
-==================
 
 ## Version history
 
