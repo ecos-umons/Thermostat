@@ -1,0 +1,61 @@
+testclass tests for statechart Thermostat {
+	
+	@Test
+	operation isStateOffActiveAfterInit (){
+        enter
+        assert active (controller.Status.r1.Off)
+        assert active (timer.IncrementSeconds)
+        assert active (window.Closed)        
+        exit
+	}
+	
+	@Test
+	operation isDay_Or_Night_Temp_To_Apply(){
+		
+		var i: integer = 0
+		var p: integer = 0
+		enter
+		 raise mode
+		 proceed 2 cycle // permit to simulator to activate the correct state (since day is the default state)
+		 assert active (controller.Status.r1.On.r1.Night)
+		 while (i <= 100) {
+			proceed i s
+				 	 
+		 	 if(hour>7&&hour<22 ){// 8....21
+		 	 	assert active (controller.Status.r1.On.r1.Day)
+		 	 }       
+		 	 else{		 	 
+		 	 	assert active (controller.Status.r1.On.r1.Night)
+		 	 }
+		 	 
+		 	 i +=  3600
+		 }
+		
+		exit
+	}
+	
+	@Test
+	//test if the thermostat behaves correctly when the window is open.
+	operation isThermostatPaused_WhenOpenWindow(){
+        enter
+        raise mode
+        proceed 1 cycle
+        assert active (controller.Status.r1.On)        
+  	   	raise openWindow
+        proceed 1 cycle
+        assert active (controller.Status.r1.Pause)
+       	exit
+	}
+	
+	@Test
+	// This example is juste to show that a test can also fail...
+	operation isStateOffActiveAfterInitP (){
+        enter
+        assert active (controller.Status.r1.Off)
+        assert active (timer.IncrementSeconds)
+        assert active (window.Open)        
+        exit
+	}
+	
+}
+

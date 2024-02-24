@@ -1,0 +1,14 @@
+GeneratorModel for yakindu::java {
+
+	statechart Thermostat {
+
+		feature Outlet {
+			targetProject = "MyThermostat"
+			targetFolder = "src"
+			libraryTargetFolder = "src"
+		}
+		feature GeneralFeatures {
+    		TimerService = true
+		}
+	}
+}
