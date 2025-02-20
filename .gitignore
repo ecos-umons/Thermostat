@@ -1,8 +1,8 @@
 *.bin
-*.bin
 *.class
-*.lock
 *.properties
 .project
 .classpath
 .settings/org.eclipse.buildship.core.prefs
+build
+.gradle
